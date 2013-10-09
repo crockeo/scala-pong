@@ -20,10 +20,10 @@ class Vector(val x: Float, val y: Float) {
   def reverseY: Vector = new Vector( x, -y)
   
   // Checking relative directions
-  def above(v: Vector) = y < v.y
-  def below(v: Vector) = y > v.y
-  def leftOf(v: Vector) = x < v.x
-  def rightOf(v: Vector) = x > v.x
+  def above(v: Vector)  : Boolean = y < v.y
+  def below(v: Vector)  : Boolean = y > v.y
+  def leftOf(v: Vector) : Boolean = x < v.x
+  def rightOf(v: Vector): Boolean = x > v.x
   
   override def toString: String =
     "(" + x + "," + y + ")"
@@ -31,9 +31,9 @@ class Vector(val x: Float, val y: Float) {
 
 object Vector {
   def randomDirectionVertical: Vector =
-    if (Random.nextInt(1) == 1) up else down
+    if (Random.nextInt % 2 == 0) up else down
   def randomDirectionLateral: Vector =
-    if (Random.nextInt(1) == 1) left else right
+    if (Random.nextInt % 2 == 0) left else right
   def randomDirectionPair: Vector =
     randomDirectionVertical + randomDirectionLateral
   

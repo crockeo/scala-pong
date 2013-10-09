@@ -22,5 +22,5 @@ object State {
               new Vector(cfg.w, cfg.h),                                                                                                            // Game Size
     		  new Paddle(new Vector(         paddleSize.x     , (cfg.h / 2) - (paddleSize.y / 2)), paddleSize, new InputConfig(cfg.p1u, cfg.p1d)), // Left paddle
     		  new Paddle(new Vector(cfg.w - (paddleSize.x * 2), (cfg.h / 2) - (paddleSize.y / 2)), paddleSize, new InputConfig(cfg.p2u, cfg.p2d)), // Right paddle
-    		  new Ball(new Vector(cfg.w / 2, cfg.h / 2), Vector.randomDirectionPair, 12.5f))                                                       // Ball
+    		  new Ball  (new Vector(cfg.w / 2, cfg.h / 2)     , Vector.randomDirectionPair, 12.5f))                                                       // Ball
 }

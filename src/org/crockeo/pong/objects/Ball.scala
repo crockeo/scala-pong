@@ -54,10 +54,11 @@ class Ball(val pos: Vector, val dir: Vector, val radius: Float) extends Renderab
       else if (b.pos.x - b.radius < 0)            resetPos(s)
       else if (b.pos.x + b.radius > s.gameSize.x) resetPos(s)
       else                                        b
-    
+          
     def paddleBound(b: Ball): Ball =
-      if (b.collisionRect.intersects(s.lPaddle) || b.collisionRect.intersects(s.rPaddle)) new Ball(pos, dir.reverseX, radius)
-      else                                                                                b
+      if (b.collisionRect.intersects(s.lPaddle))      new Ball(b.pos, new Vector( 1, b.dir.y), radius)
+      else if (b.collisionRect.intersects(s.rPaddle)) new Ball(b.pos, new Vector(-1, b.dir.y), radius)
+      else                                            b
     
     gameBound(paddleBound(translate(dir * Game.ballSpeed * dt)))
   }
