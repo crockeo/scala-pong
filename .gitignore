@@ -4,6 +4,9 @@
 *.exe
 *.jar
 
+# Project-generated files
+config.cfg
+
 # Eclipse files
 .classpath
 .worksheet
