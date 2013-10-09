@@ -1,0 +1,18 @@
+# Compiled binaries / object code
+*.class
+*.sc
+*.exe
+*.jar
+
+# Eclipse files
+.classpath
+.worksheet
+.settings
+.project
+.cache
+
+# Natives
+*.jnilib
+*.dylib
+*.dll
+*.so
