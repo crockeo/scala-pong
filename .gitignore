@@ -11,8 +11,6 @@
 .project
 .cache
 
-# Natives
-*.jnilib
-*.dylib
-*.dll
-*.so
+# Allowing the lib jars
+!lwjgl.jar
+!lwjgl_util.jar
