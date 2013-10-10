@@ -16,11 +16,13 @@ class State(val running: Boolean, val gameSize: Vector, val lPaddle: Paddle, val
 
 object State {
   private val paddleSize = new Vector(20, 70)
+  private val accelSpeed: Float = 450
+  private val maxSpeed: Float = 300
   
   def createState(cfg: Config): State =
-    new State(true,                                                                                                                                // Running
-              new Vector(cfg.w, cfg.h),                                                                                                            // Game Size
-    		  new Paddle(new Vector(         paddleSize.x     , (cfg.h / 2) - (paddleSize.y / 2)), paddleSize, new InputConfig(cfg.p1u, cfg.p1d)), // Left paddle
-    		  new Paddle(new Vector(cfg.w - (paddleSize.x * 2), (cfg.h / 2) - (paddleSize.y / 2)), paddleSize, new InputConfig(cfg.p2u, cfg.p2d)), // Right paddle
-    		  new Ball  (new Vector(cfg.w / 2, cfg.h / 2)     , Vector.randomDirectionPair, 12.5f))                                                       // Ball
+    new State(true,                                                                                                                                                         // Running
+              new Vector(cfg.w, cfg.h),                                                                                                                                     // Game Size
+    		  new Paddle(new Vector(         paddleSize.x     , (cfg.h / 2) - (paddleSize.y / 2)), paddleSize, new InputConfig(cfg.p1u, cfg.p1d), accelSpeed, 0, maxSpeed), // Left paddle
+    		  new Paddle(new Vector(cfg.w - (paddleSize.x * 2), (cfg.h / 2) - (paddleSize.y / 2)), paddleSize, new InputConfig(cfg.p2u, cfg.p2d), accelSpeed, 0, maxSpeed), // Right paddle
+    		  new Ball  (new Vector(cfg.w / 2, cfg.h / 2)     , Vector.randomDirectionPair       , 12.5f))                                                                  // Ball
 }
