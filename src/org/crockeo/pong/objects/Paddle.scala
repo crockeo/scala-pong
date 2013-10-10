@@ -31,8 +31,7 @@ class Paddle(pos: Vector, size: Vector, val inputConfig: InputConfig, val accelR
 	      if (Math.abs(currSpeed + accelRate * dt) > maxSpeed)       accelRaw( maxSpeed)
 	      else                                                       accelRaw(currSpeed + accelRate * dt)
 	    else
-	      if      (near(currSpeed, maxSpeed, accelRate * dt * 1.3f)) accelRaw(0)
-	      else if (currSpeed < 0)                                    accelRaw(currSpeed + accelRate * dt)
+	      if      (currSpeed < 0)                                    accelRaw(currSpeed + accelRate * dt)
 	      else if (currSpeed > 0)                                    accelRaw(currSpeed - accelRate * dt)
 	      else                                                       accelRaw(currSpeed)
 	  }
