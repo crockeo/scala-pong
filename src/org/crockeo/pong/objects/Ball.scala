@@ -2,10 +2,8 @@ package org.crockeo.pong.objects
 
 import org.lwjgl.opengl.GL11.GL_POLYGON
 
-import org.crockeo.pong.geom.Rectangle
-import org.crockeo.pong.geom.Vector
-import org.crockeo.pong.State
-import org.crockeo.pong.Game
+import org.crockeo.pong.geom.{Rectangle, Vector}
+import org.crockeo.pong.{Renderable, Renderer, State, Game}
 
 class Ball(val pos: Vector, val dir: Vector, val radius: Float) extends Renderable
 		with Updateable {
@@ -32,19 +30,17 @@ class Ball(val pos: Vector, val dir: Vector, val radius: Float) extends Renderab
     "Radius: " + radius
      
   // Renderable
-  override def generateRenderPoints: List[Vector] = {
-    def generateRenderPointsIter(c: Float): List[Vector] = {
+  def render(s: State): Unit = {
+    def generateRenderPoints(c: Float): List[Vector] = {
       def fCos(f: Float): Float = Math.cos(f.toDouble.toRadians).toFloat
       def fSin(f: Float): Float = Math.sin(f.toDouble.toRadians).toFloat
       
       if (c >= 360) List()
-      else          new Vector(pos.x + fCos(c) * radius, pos.y + fSin(c) * radius) +: generateRenderPointsIter(c + (360 / detail))
+      else          new Vector(pos.x + fCos(c) * radius, pos.y + fSin(c) * radius) +: generateRenderPoints(c + (360 / detail))
     }
     
-    generateRenderPointsIter(0)
+    Renderer.renderVertecies(generateRenderPoints(0), GL_POLYGON)
   }
-  
-  override def renderType: Int = GL_POLYGON
   
   // Updateable
   override def update(dt: Float, s: State): Ball = {

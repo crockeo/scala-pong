@@ -2,7 +2,7 @@ package org.crockeo.pong.geom
 
 import org.lwjgl.opengl.GL11.GL_QUADS
 
-import org.crockeo.pong.objects.Renderable
+import org.crockeo.pong.{Renderable, Renderer, State}
 
 class Rectangle(val pos: Vector, val size: Vector) extends Renderable {
   // Translating the rectangle
@@ -24,12 +24,9 @@ class Rectangle(val pos: Vector, val size: Vector) extends Renderable {
     (top < r.bot) && (bot > r.top) && (left < r.right) && (right > r.left)
   
   // Renderable
-  override def generateRenderPoints: List[Vector] =
-    List(new Vector(pos.x, pos.y),
-         new Vector(pos.x + size.x, pos.y),
-         new Vector(pos.x + size.x, pos.y + size.y), 
-         new Vector(pos.x, pos.y + size.y))
-         
-  override def renderType =
-    GL_QUADS
+  def render(s: State): Unit =
+    Renderer.renderVertecies(List(new Vector(pos.x         , pos.y         ),
+                                  new Vector(pos.x + size.x, pos.y         ),
+                                  new Vector(pos.x + size.x, pos.y + size.y),
+                                  new Vector(pos.x         , pos.y + size.y)), GL_QUADS)
 }
