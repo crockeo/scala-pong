@@ -14,6 +14,14 @@ class Paddle(pos: Vector, size: Vector, val inputConfig: InputConfig, val accelR
   override def translate(dir: Vector): Paddle =
     new Paddle(pos + dir, size, inputConfig, accelRate, currSpeed, maxSpeed)
   
+  override def toString: String =
+    "pos:      " + pos         + "\n" +
+    "size:     " + size        + "\n" + 
+    "ic:       " + inputConfig + "\n" +
+    "accel:    " + accelRate   + "\n" +
+    "speed:    " + currSpeed   + "\n" +
+    "maxSpeed: " + maxSpeed    + "\n"
+  
   // Updateable
   override def update(dt: Float, s: State): Paddle = {
     def move(is: InputState): Paddle = {

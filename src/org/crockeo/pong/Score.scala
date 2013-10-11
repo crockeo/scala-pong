@@ -8,7 +8,7 @@ import org.crockeo.pong.geom.Vector
 class Score(lScore: Int, rScore: Int) extends Renderable
 	with Updateable {
   override def toString: String =
-    lScore + " | " + rScore
+    + lScore + " | " + rScore
   
   private var sfl = false
   private var sfr = false
@@ -24,8 +24,10 @@ class Score(lScore: Int, rScore: Int) extends Renderable
     new Score(lScore, rScore + 1)
   
   // Renderable
-  def render(s: State) =
-    Renderer.renderString(new Vector(s.gameSize.x / 2, 25), toString)
+  def render(s: State) = {
+    Renderer.renderString(new Vector(s.gameSize.x / 2, 10), "Score:")
+    Renderer.renderString(new Vector(s.gameSize.x / 2, 35), toString)
+  }
     
   // Updateable
   def update(dt: Float, s: State): Score =
