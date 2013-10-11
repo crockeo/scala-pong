@@ -17,7 +17,6 @@ class Paddle(pos: Vector, size: Vector, val inputConfig: InputConfig, val accelR
   // Updateable
   override def update(dt: Float, s: State): Paddle = {
     def move(is: InputState): Paddle = {
-      // TODO: Fix never stopping
 	  def accelerate: Paddle = {
 	    def near(n: Float, target: Float, margin: Float) =
 	      (n >= target - margin) && (n <= target + margin)
@@ -32,7 +31,8 @@ class Paddle(pos: Vector, size: Vector, val inputConfig: InputConfig, val accelR
 	      if (Math.abs(currSpeed + accelRate * dt) > maxSpeed)       accelRaw( maxSpeed)
 	      else                                                       accelRaw(currSpeed + accelRate * dt)
 	    else
-	      if      (currSpeed < 0)                                    accelRaw(currSpeed + accelRate * dt)
+	      if      (near(currSpeed, 0, accelRate * dt))               accelRaw(0)
+	      else if (currSpeed < 0)                                    accelRaw(currSpeed + accelRate * dt)
 	      else if (currSpeed > 0)                                    accelRaw(currSpeed - accelRate * dt)
 	      else                                                       accelRaw(currSpeed)
 	  }
