@@ -43,12 +43,12 @@ class Ball(val pos: Vector, val dir: Vector, val radius: Float) extends Renderab
   }
   
   // Updateable
-  override def update(dt: Float, s: State): Ball = {
+  def update(dt: Float, s: State): Ball = {
     def gameBound(b: Ball): Ball =
       if (b.pos.y - b.radius < 0)                 new Ball(new Vector(b.pos.x,                b.radius), dir.reverseY, radius)
       else if (b.pos.y + b.radius > s.gameSize.y) new Ball(new Vector(b.pos.x, s.gameSize.y - b.radius), dir.reverseY, radius)
-      else if (b.pos.x - b.radius < 0)            resetPos(s)
-      else if (b.pos.x + b.radius > s.gameSize.x) resetPos(s)
+      else if (b.pos.x - (b.radius / 2) < 0)            { s.score.shouldScoreForRightNextUpdate; resetPos(s) }
+      else if (b.pos.x + (b.radius / 2) > s.gameSize.x) { s.score.shouldScoreForLeftNextUpdate; resetPos(s) }
       else                                        b
           
     def paddleBound(b: Ball): Ball =

@@ -3,12 +3,12 @@ package org.crockeo.pong
 import org.crockeo.pong.objects.{Paddle, Ball}
 import org.crockeo.pong.geom.{Rectangle, Vector}
 
-// TODO: Implement score changing
-
 class State(val running: Boolean, val gameSize: Vector, val score: Score, val lPaddle: Paddle, val rPaddle: Paddle, val ball: Ball) {
   // Updating the state
-  def update(dt: Float): State = 
-    new State(running, gameSize, score, lPaddle.update(dt, this), rPaddle.update(dt, this), ball.update(dt, this))
+  def update(dt: Float): State =  {
+    println(score)
+    new State(running, gameSize, score.update(dt, this), lPaddle.update(dt, this), rPaddle.update(dt, this), ball.update(dt, this))
+  }
   
   // Getting a list of renderables in the state
   def getRenderables: List[Renderable] =
