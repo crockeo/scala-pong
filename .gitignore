@@ -17,4 +17,4 @@ config.cfg
 # Allowing the lib jars
 !lwjgl.jar
 !lwjgl_util.jar
-!slick-util.jar
+!slick.jar
