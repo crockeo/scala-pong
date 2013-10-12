@@ -2,7 +2,6 @@ package org.crockeo.pong;
 
 import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.UnicodeFont;
 
 import java.awt.FontFormatException;
